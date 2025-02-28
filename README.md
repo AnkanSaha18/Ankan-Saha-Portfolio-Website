@@ -17,7 +17,8 @@ Instructions to update profile:
 5. Update the information in the "index.html" file.
 6. Update the images in the "images" folder.
 7. Update the links.
-8. Commit the changes and push them to the repository.
+8. Commands: (git add .)  -> (git staus)
+8. Commit the changes (from github desktop) and push them to the repository.
 9. Go to the GitHub page and click on the "Settings" button.
 10. Click on the "Pages" tab.
 11. Click on the "Save" button. (main -> root)
