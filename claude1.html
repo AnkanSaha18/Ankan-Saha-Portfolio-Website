@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ankan Saha | Portfolio</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --secondary: #1e40af;
+      --dark: #0f172a;
+      --light: #f8fafc;
+      --gray: #64748b;
+      --light-gray: #e2e8f0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: var(--dark);
+      color: white;
+      padding: 1rem;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+
+    .bar {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+      transition: 0.3s;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 6rem auto 2rem;
+      padding: 0 1rem;
+    }
+
+    section {
+      margin-bottom: 4rem;
+      scroll-margin-top: 6rem;
+    }
+
+    h1,
+    h2,
+    h3 {
+      color: var(--dark);
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 0.5rem;
+      display: inline-block;
+    }
+
+    p {
+      margin-bottom: 1rem;
+    }
+
+    .hero {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      min-height: 70vh;
+      margin-bottom: 2rem;
+    }
+
+    .hero-content h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-content h3 {
+      color: var(--gray);
+      font-weight: normal;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+      background-color: var(--secondary);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .profile-img {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid var(--primary);
+    }
+
+    .education-item,
+    .experience-item,
+    .project-item,
+    .publication-item {
+      background-color: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      margin-bottom: 1.5rem;
+    }
+
+    .education-item h3,
+    .experience-item h3,
+    .project-item h3,
+    .publication-item h3 {
+      color: var(--primary);
+    }
+
+    .education-date,
+    .experience-date,
+    .project-tech {
+      color: var(--gray);
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .skills-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .skill-category {
+      flex: 1;
+      min-width: 250px;
+      background-color: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .skill-category h3 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .skill-tag {
+      background-color: var(--light-gray);
+      color: var(--dark);
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+    }
+
+    .projects-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-item {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-content {
+      flex-grow: 1;
+    }
+
+    footer {
+      background-color: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 4rem;
+    }
+
+    .contact-info {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin: 2rem 0;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .contact-item a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .contact-item a:hover {
+      color: var(--primary);
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .social-links a {
+      color: white;
+      font-size: 1.5rem;
+      transition: color 0.3s;
+    }
+
+    .social-links a:hover {
+      color: var(--primary);
+    }
+
+    .achievement-list {
+      list-style-type: none;
+    }
+
+    .achievement-list li {
+      margin-bottom: 0.5rem;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+
+    .achievement-list li::before {
+      content: "🏆";
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+    }
+
+    .tab-container {
+      margin-bottom: 1.5rem;
+    }
+
+    .tab-buttons {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      padding: 0.5rem 1rem;
+      background-color: var(--light-gray);
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .tab-btn.active {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+        gap: 1rem;
+        min-height: auto;
+      }
+
+      .hero-btns {
+        justify-content: center;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        flex-direction: column;
+        width: 100%;
+        background-color: var(--dark);
+        padding: 1rem;
+        gap: 1rem;
+        transform: translateY(-100%);
+        transition: transform 0.3s ease-in-out;
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      .menu-toggle.active .bar:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+      }
+
+      .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+      }
+
+      .menu-toggle.active .bar:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div class="logo">Ankan Saha</div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#publications">Publications</a>
+        <a href="#achievements">Achievements</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="menu-toggle">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Ankan Saha</h1>
+        <h3>Lecturer & Computer Science Engineer</h3>
+        <p>Passionate computer science graduate with a strong background in problem-solving, blockchain, and web
+          development. Currently a lecturer at Hamdard University Bangladesh, pursuing M.Sc. in Computer Science &
+          Engineering at BUET.</p>
+        <div class="hero-btns">
+          <a href="#contact" class="btn">Contact Me</a>
+          <a href="#projects" class="btn btn-outline">View Projects</a>
+        </div>
+      </div>
+      <img src="/api/placeholder/250/250" alt="Ankan Saha" class="profile-img" />
+    </section>
+
+    <section id="about">
+      <h2>About Me</h2>
+      <p>Seeking a challenging position where my strong academic background and passion for learning can be utilized to
+        contribute to cutting-edge research and academic advancements. Eager to leverage further education to enhance
+        contributions within the academic community.</p>
+      <p>Passionate about problem-solving, web development, and blockchain technology. I am enthusiastic about taking on
+        engaging projects and welcoming new challenges. Active in discovering new opportunities and taking on
+        professional challenges while dedicated to continuous learning and progress.</p>
+    </section>
+
+    <section id="education">
+      <h2>Education</h2>
+      <div class="education-item">
+        <h3>M.Sc. in Computer Science & Engineering</h3>
+        <p>Bangladesh University of Engineering & Technology (BUET)</p>
+        <div class="education-date">2024 - Present</div>
+      </div>
+      <div class="education-item">
+        <h3>B.Sc. in Computer Science & Engineering</h3>
+        <p>Khulna University of Engineering & Technology (KUET)</p>
+        <div class="education-date">2019 - 2024</div>
+        <p>CGPA: 3.73 out of 4.00</p>
+        <p>Area of Interest: Programming, Data Structures and Algorithms, Networking, Blockchain, Machine Learning</p>
+      </div>
+      <div class="education-item">
+        <h3>Higher Secondary Certificate (HSC)</h3>
+        <p>Dr. Mahbubur Rahman Mollah College, Dhaka</p>
+        <div class="education-date">2016 - 2018</div>
+        <p>GPA: 5.00 out of 5.00</p>
+      </div>
+      <div class="education-item">
+        <h3>Secondary School Certificate (SSC)</h3>
+        <p>Narayanganj High School and College, Narayanganj</p>
+        <div class="education-date">2011 - 2016</div>
+        <p>GPA: 4.89 out of 5.00</p>
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2>Professional Experience</h2>
+      <div class="experience-item">
+        <h3>Lecturer</h3>
+        <p>Hamdard University Bangladesh (HUB)</p>
+        <div class="experience-date">May 2024 - Present</div>
+        <p>Responsible for delivering engaging lectures, preparing comprehensive course materials, mentoring students,
+          and contributing to academic development.</p>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>Technical Skills</h2>
+      <div class="skills-container">
+        <div class="skill-category">
+          <h3>Programming Languages</h3>
+          <div class="skill-list">
+            <span class="skill-tag">C (Expert)</span>
+            <span class="skill-tag">C++ (Expert)</span>
+            <span class="skill-tag">Python (Intermediate)</span>
+            <span class="skill-tag">Java (Intermediate)</span>
+            <span class="skill-tag">Swift</span>
+            <span class="skill-tag">HTML</span>
+            <span class="skill-tag">CSS</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">PHP (Intermediate)</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3>Frameworks & Tools</h3>
+          <div class="skill-list">
+            <span class="skill-tag">OpenGL</span>
+            <span class="skill-tag">Bootstrap</span>
+            <span class="skill-tag">Flask</span>
+            <span class="skill-tag">iOS</span>
+            <span class="skill-tag">Android</span>
+            <span class="skill-tag">Hyperledger Fabric</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3>Data & Analysis</h3>
+          <div class="skill-list">
+            <span class="skill-tag">MySQL</span>
+            <span class="skill-tag">Oracle SQL</span>
+            <span class="skill-tag">NumPy</span>
+            <span class="skill-tag">Pandas</span>
+            <span class="skill-tag">Matplotlib</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3>Others</h3>
+          <div class="skill-list">
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">LaTeX</span>
+            <span class="skill-tag">Linux</span>
+            <span class="skill-tag">MacOS</span>
+            <span class="skill-tag">Windows</span>
+            <span class="skill-tag">Arduino</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="tab-container">
+        <div class="tab-buttons">
+          <button class="tab-btn active" data-tab="thesis">Thesis</button>
+          <button class="tab-btn" data-tab="webdev">Web Development</button>
+          <button class="tab-btn" data-tab="gamedev">Game Development</button>
+          <button class="tab-btn" data-tab="mobile">Mobile Apps</button>
+          <button class="tab-btn" data-tab="other">Other Projects</button>
+        </div>
+
+        <div class="tab-content active" id="thesis">
+          <div class="project-item">
+            <h3>Optimizing Hyperledger Framework for High Transactions Throughput in Private Blockchain</h3>
+            <div class="project-tech">Technologies: Hyperledger Fabric, Node.js</div>
+            <div class="project-content">
+              <p>Developed an innovative approach to optimize transaction throughput in Hyperledger private blockchain
+                networks, achieving significant improvements in speed and efficiency through enhanced network
+                architecture, advanced chaincode functionality, and seamless Node.js integration.</p>
+              <p>My thesis focused on enhancing the performance of a private blockchain network through meticulous
+                optimization of several key network parameters. This included adjustments to block size, the number of
+                channels, transaction volumes, and the endorsing policy. The goal was to increase throughput while
+                simultaneously reducing network latency significantly.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-content" id="webdev">
+          <div class="projects-container">
+            <div class="project-item">
+              <h3>News Summary</h3>
+              <div class="project-tech">Technologies: Python, Flask, HTML, Bootstrap</div>
+              <div class="project-content">
+                <p>A web application that summarizes news articles from various sources using extractive and abstractive
+                  summarization techniques. The NLP transformer T5 model works in the backend.</p>
+              </div>
+            </div>
+            <div class="project-item">
+              <h3>Medi-Sol</h3>
+              <div class="project-tech">Technologies: HTML, CSS, JavaScript, Bootstrap, PHP</div>
+              <div class="project-content">
+                <p>A web platform that provides users with easy access to nearby medical facilities, ambulance services,
+                  pharmacies, and doctor contact information.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-content" id="gamedev">
+          <div class="projects-container">
+            <div class="project-item">
+              <h3>Basketball-Ground</h3>
+              <div class="project-tech">Technologies: C/C++, OpenGL 3.3</div>
+              <div class="project-content">
+                <p>An OpenGL-based simple game where one player can simulate basketball gameplay in the virtual world.
+                </p>
+              </div>
+            </div>
+            <div class="project-item">
+              <h3>Len-Choa</h3>
+              <div class="project-tech">Technologies: Python, Pygame</div>
+              <div class="project-content">
+                <p>Game theory-based AI is used for developing this game. Interactive graphical interface using Pygame
+                  which gives challenging and entertaining gameplay.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-content" id="mobile">
+          <div class="projects-container">
+            <div class="project-item">
+              <h3>Cardiac Recorder</h3>
+              <div class="project-tech">Technologies: Java, SQL Lite, Git, Unit & UI test</div>
+              <div class="project-content">
+                <p>Android application to keep track of the health information of the user. Unit testing and UI testing
+                  were used here to validate the application's correctness.</p>
+              </div>
+            </div>
+            <div class="project-item">
+              <h3>Cook-Book</h3>
+              <div class="project-tech">Technologies: Swift, MySQL</div>
+              <div class="project-content">
+                <p>An iOS application that stores the recipes of different dishes. Users can insert new recipes into it
+                  and also delete existing recipes from the list.</p>
+              </div>
+            </div>
+            <div class="project-item">
+              <h3>Coaching Management System</h3>
+              <div class="project-tech">Technologies: Java, JavaFX, SQL, OpenWeatherMap API</div>
+              <div class="project-content">
+                <p>A coaching management Application which is based on database and API manipulation.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-content" id="other">
+          <div class="projects-container">
+            <div class="project-item">
+              <h3>Line Follower Robot</h3>
+              <div class="project-tech">Technologies: C/C++, Arduino</div>
+              <div class="project-content">
+                <p>Built and programmed a 3-wheeler robot that autonomously follows lines and successfully navigates
+                  complex node intersections.</p>
+              </div>
+            </div>
+            <div class="project-item">
+              <h3>Compiler Project</h3>
+              <div class="project-tech">Technologies: Flex, Bison, Objective C</div>
+              <div class="project-content">
+                <p>Built and designed own compiler (Only Lexical and Semantic Analysis).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="publications">
+      <h2>Publications</h2>
+      <div class="publication-item">
+        <h3>Unravel News: An Efficient Summarization Approach</h3>
+        <p>Authors: Ankan Saha, Abdullah Al Shafi</p>
+        <p>Accepted in COMPAS 2024</p>
+      </div>
+      <div class="publication-item">
+        <h3>Enhancing Hyperledger Fabric: A Scalable Framework for Optimized Blockchain Performance</h3>
+        <p>Authors: Ankan Saha, Sourav Majumder, Md. Motaleb Hossen Manik, and M.M.A. Hashem</p>
+        <p>Accepted in ICCIT 2024</p>
+      </div>
+    </section>
+
+    <section id="achievements">
+      <h2>Achievements</h2>
+      <div class="achievement-item education-item">
+        <h3>Academic Achievements</h3>
+        <ul class="achievement-list">
+          <li>Dean's award from The Honorable Dean of Faculty of Electrical and Electronic Engineering (EEE), KUET for
+            excellent results (2021)</li>
+          <li>Dean's award from The Honorable Dean of Faculty of Electrical and Electronic Engineering (EEE), KUET for
+            excellent results (2020)</li>
+        </ul>
+      </div>
+      <div class="achievement-item education-item">
+        <h3>Competitive Programming</h3>
+        <ul class="achievement-list">
+          <li>Codeforces: Solved 500+ problems</li>
+          <li>Leetcode: Solved 250+ problems</li>
+          <li>Codechef: 3 star with maximum rating 1612</li>
+        </ul>
+      </div>
+      <div class="achievement-item education-item">
+        <h3>Certifications</h3>
+        <ul class="achievement-list">
+          <li>Number Theory and Cryptography</li>
+          <li>Supervised Machine Learning: Regression and Classification</li>
+          <li>Advanced Learning Algorithms</li>
+          <li>Blockchain Basics</li>
+          <li>Build an App in Android Studio using Read-Write</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact Me</h2>
+      <div class="contact-info">
+        <div class="contact-item">
+          <span>📱</span>
+          <a href="tel:+8801537564558">+8801537564558</a>
+        </div>
+        <div class="contact-item">
+          <span>✉️</span>
+          <a href="mailto:ankansaha314159@gmail.com">ankansaha314159@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <span>📍</span>
+          <span>Narayangonj, Dhaka, Bangladesh</span>
+        </div>
+      </div>
+      <div class="social-links">
+        <a href="https://linkedin.com/in/ankan-saha18" target="_blank">LinkedIn</a>
+        <a href="https://github.com/AnkanSaha18" target="_blank">GitHub</a>
+        <a href="https://leetcode.com/user" target="_blank">LeetCode</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Ankan Saha. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+
+    // Close mobile menu when clicking a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+      });
+    });
+
+    // Project tabs
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tabId = btn.dataset.tab;
+
+        // Remove active class from all buttons and contents
+        tabBtns.forEach(btn => btn.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
+
+        // Add active class to clicked button and corresponding content
+        btn.classList.add('active');
+        document.getElementById(tabId).classList.add('active');
+      });
+    });
+  </script>
+</body>
+
+</html>
